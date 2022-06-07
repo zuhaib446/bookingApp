@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { RoomInterface } from '../interface/room.interface';
 
-export type RoomDocument = Document & RoomInterface;
+export type RoomDocument = Document & Room & RoomInterface;
 
 @Schema({ timestamps: true })
-export class RoomSchema {
+export class Room {
     @Prop()
     currency: string;
 
@@ -27,5 +27,4 @@ export class RoomSchema {
     roomImage: string;
 }
 
-export const Room = SchemaFactory.createForClass(RoomSchema);
-export default Room;
+export const RoomSchema = SchemaFactory.createForClass(Room);
