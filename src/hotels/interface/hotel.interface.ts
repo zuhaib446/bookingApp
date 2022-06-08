@@ -1,5 +1,4 @@
 import { RoomInterface } from '../../rooms/interface/room.interface';
-
 export interface HotelInterface {
     name: string;
     address: string;

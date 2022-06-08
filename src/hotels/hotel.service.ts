@@ -10,9 +10,9 @@ import { Hotel } from './schema/hotel.schema';
 export class HotelService {
     constructor(@InjectModel(Hotel.name) private readonly hotelModel: Model<HotelInterface>) { }
 
-    async create(hotelDto: HotelDto): Promise<HotelInterface> {
+    async create(image: Express.Multer.File, hotelDto: HotelDto): Promise<HotelInterface> {
         try {
-            const createdHotel = new this.hotelModel(hotelDto);
+            const createdHotel = new this.hotelModel(image, hotelDto);
             return await createdHotel.save();
         } catch (error) {
             throw new Error(error);
