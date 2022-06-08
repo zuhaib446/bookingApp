@@ -3,12 +3,12 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { HotelInterface } from './interface/hotel.interface';
 import { HotelDto } from './dto/hotel.dto';
-import { HotelSchema } from './schema/hotel.schema';
+import { Hotel } from './schema/hotel.schema';
 
 
 @Injectable()
 export class HotelService {
-    constructor(@InjectModel(HotelSchema.name) private readonly hotelModel: Model<HotelInterface>) { }
+    constructor(@InjectModel(Hotel.name) private readonly hotelModel: Model<HotelInterface>) { }
 
     async create(hotelDto: HotelDto): Promise<HotelInterface> {
         try {

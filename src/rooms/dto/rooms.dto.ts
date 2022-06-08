@@ -7,10 +7,6 @@ import {
 export class RoomsDto {
     @IsString()
     @IsNotEmpty()
-    currency: string;
-
-    @IsString()
-    @IsNotEmpty()
     checkIn: string;
 
     @IsString()
@@ -18,14 +14,18 @@ export class RoomsDto {
     checkOut: string;
 
     @IsString()
-    @IsNotEmpty()
     roomType: string;
 
     @IsString()
-    @IsNotEmpty()
     roomDescription: string;
 
     @IsNumber()
     @IsNotEmpty()
-    roomPrice: string;
+    roomPrice: number;
+
+    @IsString()
+    roomImages: [string];
+
+    @IsNumber()
+    maxPeople: number;
 }

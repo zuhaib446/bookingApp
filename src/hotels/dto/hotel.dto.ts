@@ -1,37 +1,42 @@
 
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsEmail, MinLength } from 'class-validator';
 
 export class HotelDto {
     @IsString()
-    @IsNotEmpty()
+    @IsNotEmpty({ message: 'Hotel name is required' })
     name: string;
 
     @IsString()
-    @IsNotEmpty()
     address: string;
 
     @IsNumber()
-    @IsNotEmpty()
-    stars: number;
+    phone: string;
+
+    @IsEmail()
+    email: string;
 
     @IsString()
-    @IsNotEmpty()
-    image: string;
-
-    @IsString()
-    @IsNotEmpty()
+    @MinLength(10, { message: 'Description must be at least 10 characters long' })
     description: string;
 
     @IsString()
-    @IsNotEmpty()
-    contactEmail: string;
+    logo: string;
+
+    @IsNumber()
+    stars: number;
+
+    @IsNumber()
+    location: {
+        lat: number,
+        lng: number
+    };
 
     @IsString()
-    @IsNotEmpty()
-    city: string;
+    services: string[];
 
     @IsString()
-    @IsNotEmpty()
-    country: string;
+    reviews: string[];
 
+    @IsString()
+    image: string;
 }
