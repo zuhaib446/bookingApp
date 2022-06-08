@@ -1,11 +1,9 @@
-import { Document } from 'mongoose';
-
-export interface RoomInterface extends Document {
-    currency: string;
+export interface RoomInterface {
     checkIn: string;
     checkOut: string;
     roomType: string;
     roomDescription: string;
-    roomPrice: string;
-    roomImage: string;
+    roomPrice: number;
+    roomImages: [string];
+    maxPeople: number;
 }
