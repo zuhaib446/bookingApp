@@ -7,6 +7,7 @@ export type HotelDocument = Document & SchemaTimestampsConfig;
 
 @Schema({ timestamps: true })
 export class Hotel implements HotelInterface {
+
     @Prop()
     name: string;
 
@@ -21,9 +22,6 @@ export class Hotel implements HotelInterface {
 
     @Prop()
     description: string;
-
-    @Prop()
-    logo: string;
 
     @Prop()
     stars: number;
@@ -42,3 +40,4 @@ export class Hotel implements HotelInterface {
 }
 
 export const HotelSchema = SchemaFactory.createForClass(Hotel);
+

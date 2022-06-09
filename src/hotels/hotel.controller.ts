@@ -1,9 +1,10 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors, } from '@nestjs/common';
 import { HotelDto } from './dto/hotel.dto';
 import { HotelService } from './hotel.service';
 import { HotelInterface } from './interface/hotel.interface';
+import { FileInterceptor } from '@nestjs/platform-express';
 
-@Controller('api/hotel')
+@Controller('hotel')
 export class HotelController {
     constructor(private readonly hotelService: HotelService) { }
 
@@ -11,6 +12,8 @@ export class HotelController {
     async create(
         @Body() hotelDto: HotelDto
     ): Promise<HotelInterface> {
+        console.log(hotelDto);
+
         return await this.hotelService.create(hotelDto)
     }
 

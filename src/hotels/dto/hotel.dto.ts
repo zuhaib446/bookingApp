@@ -1,35 +1,29 @@
 
-import { IsString, IsNotEmpty, IsNumber, IsEmail, MinLength } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsEmail, MinLength, MaxLength } from 'class-validator';
 
 export class HotelDto {
     @IsString()
-    @IsNotEmpty({ message: 'Hotel name is required' })
+    @IsNotEmpty({
+        message: 'Name is required',
+    })
     name: string;
 
     @IsString()
+    @IsNotEmpty({})
     address: string;
 
-    @IsNumber()
+    @IsString()
     phone: string;
 
     @IsEmail()
+    @IsString()
     email: string;
 
     @IsString()
-    @MinLength(10, { message: 'Description must be at least 10 characters long' })
     description: string;
-
-    @IsString()
-    logo: string;
 
     @IsNumber()
     stars: number;
-
-    @IsNumber()
-    location: {
-        lat: number,
-        lng: number
-    };
 
     @IsString()
     services: string[];
@@ -39,4 +33,5 @@ export class HotelDto {
 
     @IsString()
     image: string;
+    //  rooms: RoomInterface[];
 }

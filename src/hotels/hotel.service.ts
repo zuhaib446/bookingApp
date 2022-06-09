@@ -5,7 +5,6 @@ import { HotelInterface } from './interface/hotel.interface';
 import { HotelDto } from './dto/hotel.dto';
 import { Hotel } from './schema/hotel.schema';
 
-
 @Injectable()
 export class HotelService {
     constructor(@InjectModel(Hotel.name) private readonly hotelModel: Model<HotelInterface>) { }
