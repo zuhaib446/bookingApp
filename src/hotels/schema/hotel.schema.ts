@@ -24,9 +24,6 @@ export class Hotel implements HotelInterface {
     description: string;
 
     @Prop()
-    logo: string;
-
-    @Prop()
     stars: number;
 
     @Prop()

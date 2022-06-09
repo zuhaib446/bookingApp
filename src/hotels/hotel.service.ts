@@ -5,14 +5,13 @@ import { HotelInterface } from './interface/hotel.interface';
 import { HotelDto } from './dto/hotel.dto';
 import { Hotel } from './schema/hotel.schema';
 
-
 @Injectable()
 export class HotelService {
     constructor(@InjectModel(Hotel.name) private readonly hotelModel: Model<HotelInterface>) { }
 
-    async create(image: Express.Multer.File, hotelDto: HotelDto): Promise<HotelInterface> {
+    async create(hotelDto: HotelDto): Promise<HotelInterface> {
         try {
-            const createdHotel = new this.hotelModel(image, hotelDto);
+            const createdHotel = new this.hotelModel(hotelDto);
             return await createdHotel.save();
         } catch (error) {
             throw new Error(error);

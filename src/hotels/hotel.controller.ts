@@ -4,17 +4,17 @@ import { HotelService } from './hotel.service';
 import { HotelInterface } from './interface/hotel.interface';
 import { FileInterceptor } from '@nestjs/platform-express';
 
-@Controller('api/hotel')
+@Controller('hotel')
 export class HotelController {
     constructor(private readonly hotelService: HotelService) { }
 
     @Post()
-    @UseInterceptors(FileInterceptor('image'))
     async create(
-        @UploadedFile() image: any,
         @Body() hotelDto: HotelDto
     ): Promise<HotelInterface> {
-        return await this.hotelService.create(image, hotelDto)
+        console.log(hotelDto);
+
+        return await this.hotelService.create(hotelDto)
     }
 
     @Get()

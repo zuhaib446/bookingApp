@@ -5,7 +5,6 @@ export interface HotelInterface {
     phone: string;
     email: string;
     description: string;
-    logo: string;
     stars: number;
     services: string[];
     reviews: string[];
