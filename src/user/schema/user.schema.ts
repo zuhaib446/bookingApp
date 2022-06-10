@@ -15,7 +15,7 @@ export class User implements UserInterface {
     @Prop()
     password: string;
 
-    @Prop({ type: [String], default: ['user'], enum: ['user', 'provider', 'admin'] })
+    @Prop({ type: [String], default: ['user'], enum: ['user', 'owner', 'admin'] })
     role: [string];
 
     @Prop()
