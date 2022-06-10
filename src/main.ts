@@ -3,6 +3,10 @@ import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
+import { UserModule } from './user/user.module';
+import { HotelModule } from './hotels/hotel.module';
+import { RoomModule } from './rooms/room.module';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
@@ -19,13 +23,16 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options, {
     include: [
       AppModule,
+      UserModule,
+      HotelModule,
+      RoomModule
     ],
   });
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api/swagger', app, document);
   app.use(helmet());
   await app.listen(3000, () => {
     console.log('Listening on port 3000');
-    console.log('http://localhost:3000/api');
+    console.log('http://localhost:3000/api/swagger');
   }
   );
 }
