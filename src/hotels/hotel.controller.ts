@@ -1,13 +1,18 @@
-import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors, } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { HotelDto } from './dto/hotel.dto';
 import { HotelService } from './hotel.service';
 import { HotelInterface } from './interface/hotel.interface';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { RoleGuard } from 'src/auth/guard/role.guard';
+import { Role } from 'src/auth/decorator/role.decorator';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('hotel')
+@UseGuards(RoleGuard)
 export class HotelController {
     constructor(private readonly hotelService: HotelService) { }
 
+    @UseGuards(AuthGuard('jwt'))
+    @Role('admin' || 'owner')
     @Post()
     async create(
         @Body() hotelDto: HotelDto
@@ -29,6 +34,8 @@ export class HotelController {
         return await this.hotelService.findOne(id)
     }
 
+    @UseGuards(AuthGuard('jwt'))
+    @Role('admin' || 'owner')
     @Post('/:id')
     async update(
         @Param('id') id: string,
@@ -37,6 +44,8 @@ export class HotelController {
         return await this.hotelService.update(id, hotelDto)
     }
 
+    @UseGuards(AuthGuard('jwt'))
+    @Role('admin' || 'owner')
     @Post('/:id/delete')
     async delete(
         @Param('id') id: string
