@@ -1,28 +1,25 @@
-import { Injectable, ExecutionContext, ForbiddenException, UnauthorizedException } from '@nestjs/common';
-import { Observable } from 'rxjs';
+import { Injectable, ForbiddenException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 
 @Injectable()
 export class RoleGuard extends AuthGuard('jwt') {
-    constructor(private readonly reflector: Reflector) {
+    constructor(
+        private readonly reflector: Reflector) {
         super();
     }
 
-    canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
-        const roles = this.reflector.get<string[]>('roles', context.getHandler());
+    handleRequest<TUser = any>(err: any, user: any, info: any, context: any): TUser {
+        const roles = this.reflector.get<string[]>('role', context.getHandler());
+        console.log({ roles });
+
         if (!roles) {
-            return true;
+            return true as any;
         }
-        const request = context.switchToHttp().getRequest();
-        const user = request.user;
-        if (!user) {
-            throw new UnauthorizedException();
+        const isMatch = roles.some(role => user.role === role);
+        if (!isMatch) {
+            throw new ForbiddenException('Forbidden');
         }
-        const hasRole = () => user.roles.some(role => roles.includes(role));
-        if (user && user.roles && hasRole()) {
-            return true;
-        }
-        throw new ForbiddenException();
+        return user;
     }
 }

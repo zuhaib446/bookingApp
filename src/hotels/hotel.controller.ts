@@ -22,6 +22,8 @@ export class HotelController {
         return await this.hotelService.create(hotelDto)
     }
 
+    @UseGuards(AuthGuard('jwt'))
+    @Role('admin', 'user')
     @Get()
     async findAll(): Promise<HotelInterface[]> {
         return await this.hotelService.findAll()
