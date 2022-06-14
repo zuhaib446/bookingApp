@@ -17,7 +17,7 @@ export class UserController {
     @Post('/login')
     async login(
         @Body() userDto: UserLoginDto
-    ): Promise<UserInterface> {
+    ): Promise<any> {
         return await this.userService.login(userDto)
     }
 }

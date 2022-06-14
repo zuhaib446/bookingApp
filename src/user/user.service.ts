@@ -5,10 +5,13 @@ import { UserInterface } from './interface/user.interface';
 import { UserDto, UserLoginDto } from './dto/user.dto';
 import { User } from './schema/user.schema';
 import { genSalt, hash, compare } from 'bcryptjs';
-
+import { AuthService } from 'src/auth/auth.service';
 @Injectable()
 export class UserService {
-    constructor(@InjectModel(User.name) private readonly userModel: Model<UserInterface>) { }
+    constructor(
+        @InjectModel(User.name) private readonly userModel: Model<UserInterface>,
+        private readonly authService: AuthService,
+    ) { }
 
     async register(userDto: UserDto): Promise<UserInterface> {
         try {
@@ -28,14 +31,21 @@ export class UserService {
         }
     }
 
-    async login(userLogin: UserLoginDto): Promise<UserInterface> {
+    async login(userLogin: UserLoginDto) {
         try {
             const user = await this.userModel.findOne({ email: userLogin.email });
             if (!user) {
                 throw new Error(`User with email ${userLogin.email} does not exist`);
             }
             const isMatch = await compare(userLogin.password, user.password);
-            return isMatch && user
+            if (!isMatch) {
+                throw new Error('Invalid password');
+            }
+            return {
+                name: user.firstName,
+                email: user.email,
+                token: await this.authService.createToken(user._id as any),
+            }
         } catch (error) {
             throw new Error(error);
         }
