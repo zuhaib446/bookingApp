@@ -8,6 +8,7 @@ import { RoomModule } from './rooms/room.module';
 import { UserModule } from './user/user.module';
 import { OwnerModule } from './owner/owner.module';
 import { AuthModule } from './auth/auth.module';
+import { BookingModule } from './booking/booking.module';
 config();
 
 @Module({
@@ -18,6 +19,7 @@ config();
     UserModule,
     OwnerModule,
     AuthModule,
+    BookingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
