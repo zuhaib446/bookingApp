@@ -6,8 +6,8 @@ export interface BookingInterface {
     user: UserInterface;
     room: RoomInterface;
     hotel: HotelInterface;
-    startDate: Date;
-    endDate: Date;
+    checkIn: Date;
+    checkOut: Date;
     price: number;
     status: string;
     persons: number;

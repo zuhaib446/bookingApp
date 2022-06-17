@@ -20,11 +20,11 @@ export class Booking implements BookingInterface {
     @Prop({ type: MSchema.Types.ObjectId, ref: 'Hotel' })
     hotel: HotelInterface;
 
-    @Prop()
-    startDate: Date;
+    @Prop({ type: Date })
+    checkIn: Date;
 
-    @Prop()
-    endDate: Date;
+    @Prop({ type: Date })
+    checkOut: Date;
 
     @Prop()
     price: number;

@@ -7,12 +7,6 @@ export type RoomDocument = Document & SchemaTimestampsConfig;
 @Schema({ timestamps: true })
 export class Room implements RoomInterface {
     @Prop()
-    checkIn: string;
-
-    @Prop()
-    checkOut: string;
-
-    @Prop()
     roomType: string;
 
     @Prop()
