@@ -9,6 +9,7 @@ import { UserModule } from './user/user.module';
 import { OwnerModule } from './owner/owner.module';
 import { AuthModule } from './auth/auth.module';
 import { BookingModule } from './booking/booking.module';
+import { AdminModule } from './admin/admin.module';
 config();
 
 @Module({
@@ -20,6 +21,7 @@ config();
     OwnerModule,
     AuthModule,
     BookingModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [AppService],

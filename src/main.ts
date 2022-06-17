@@ -6,6 +6,8 @@ import helmet from 'helmet';
 import { UserModule } from './user/user.module';
 import { HotelModule } from './hotels/hotel.module';
 import { RoomModule } from './rooms/room.module';
+import { BookingModule } from './booking/booking.module';
+import { AdminModule } from './admin/admin.module';
 
 
 async function bootstrap() {
@@ -25,7 +27,9 @@ async function bootstrap() {
       AppModule,
       UserModule,
       HotelModule,
-      RoomModule
+      RoomModule,
+      BookingModule,
+      AdminModule,
     ],
   });
   SwaggerModule.setup('api/swagger', app, document);
