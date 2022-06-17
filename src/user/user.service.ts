@@ -39,7 +39,7 @@ export class UserService {
             }
             const isMatch = await compare(userLogin.password, user.password);
             if (!isMatch) {
-                throw new Error('Invalid password');
+                throw new Error('Invalid Credentials');
             }
             return {
                 name: user.firstName,
