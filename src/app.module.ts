@@ -6,7 +6,6 @@ import { config } from 'dotenv';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RoomModule } from './rooms/room.module';
 import { UserModule } from './user/user.module';
-import { OwnerModule } from './owner/owner.module';
 import { AuthModule } from './auth/auth.module';
 import { BookingModule } from './booking/booking.module';
 import { AdminModule } from './admin/admin.module';
@@ -18,7 +17,6 @@ config();
     HotelModule,
     RoomModule,
     UserModule,
-    OwnerModule,
     AuthModule,
     BookingModule,
     AdminModule,
