@@ -20,7 +20,7 @@ export class HotelService {
 
     async findAll(): Promise<HotelInterface[]> {
         try {
-            return await this.hotelModel.find();
+            return await this.hotelModel.find().populate('rooms');
         } catch (error) {
             throw new Error(error);
         }
