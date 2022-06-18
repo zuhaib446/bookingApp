@@ -13,7 +13,11 @@ import { AdminModule } from './admin/admin.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   app.useGlobalPipes(new ValidationPipe({
-    disableErrorMessages: true,
+    transform: true,
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    disableErrorMessages:
+      process.env.NODE_ENV === 'PRODUCTION' ? true : false,
   }));
 
   const options = new DocumentBuilder()
