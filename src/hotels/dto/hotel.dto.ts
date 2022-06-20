@@ -1,15 +1,13 @@
 
-import { IsString, IsNotEmpty, IsNumber, IsEmail, MinLength, MaxLength } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsEmail } from 'class-validator';
 
 export class HotelDto {
     @IsString()
-    @IsNotEmpty({
-        message: 'Name is required',
-    })
+    @IsNotEmpty()
     name: string;
 
     @IsString()
-    @IsNotEmpty({})
+    @IsNotEmpty()
     address: string;
 
     @IsString()
@@ -33,5 +31,4 @@ export class HotelDto {
 
     @IsString()
     image: string;
-    //  rooms: RoomInterface[];
 }

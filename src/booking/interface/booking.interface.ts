@@ -8,7 +8,7 @@ export interface BookingInterface {
     hotel: HotelInterface;
     checkIn: Date;
     checkOut: Date;
-    price: number;
+    total: number;
     status: string;
     persons: number;
     extraBed: boolean;

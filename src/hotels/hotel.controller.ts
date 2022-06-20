@@ -12,18 +12,14 @@ export class HotelController {
     constructor(private readonly hotelService: HotelService) { }
 
     @UseGuards(AuthGuard('jwt'))
-    @Role('admin' || 'owner')
+    @Role('admin', 'owner')
     @Post()
     async create(
         @Body() hotelDto: HotelDto
     ): Promise<HotelInterface> {
-        console.log(hotelDto);
-
         return await this.hotelService.create(hotelDto)
     }
 
-    @UseGuards(AuthGuard('jwt'))
-    @Role('admin', 'user')
     @Get()
     async findAll(): Promise<HotelInterface[]> {
         return await this.hotelService.findAll()
@@ -37,7 +33,7 @@ export class HotelController {
     }
 
     @UseGuards(AuthGuard('jwt'))
-    @Role('admin' || 'owner')
+    @Role('owner')
     @Post('/:id')
     async update(
         @Param('id') id: string,
@@ -47,7 +43,7 @@ export class HotelController {
     }
 
     @UseGuards(AuthGuard('jwt'))
-    @Role('admin' || 'owner')
+    @Role('admin')
     @Post('/:id/delete')
     async delete(
         @Param('id') id: string

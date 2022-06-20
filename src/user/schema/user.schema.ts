@@ -6,7 +6,7 @@ export class User implements UserInterface {
     @Prop()
     firstName: string;
 
-    @Prop()
+    @Prop({ required: true, unique: true })
     lastName: string;
 
     @Prop()

@@ -1,6 +1,21 @@
+import { IsBoolean, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
+
 export class BookingDto {
-    startDate: Date;
-    endDate: Date;
-    price: number;
+    @IsString()
+    @IsNotEmpty()
+    roomId: string;
+
+    @IsNotEmpty()
+    checkIn: Date;
+
+    @IsNotEmpty()
+    checkOut: Date;
+
+    @IsNotEmpty()
+    @IsNumber()
     persons: number;
+
+    @IsBoolean()
+    @IsOptional()
+    extraBed?: boolean;
 }

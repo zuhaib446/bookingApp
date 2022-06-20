@@ -27,7 +27,7 @@ export class Booking implements BookingInterface {
     checkOut: Date;
 
     @Prop()
-    price: number;
+    total: number;
 
     @Prop({ enum: ['pending', 'confirmed', 'cancelled'], default: 'pending' })
     status: string;
