@@ -2,7 +2,7 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserInterface } from './interface/user.interface';
-import { UserDto, UserLoginDto } from './dto/user.dto';
+import { UserDto, UserLoginDto, updateUserDto } from './dto/user.dto';
 import { User } from './schema/user.schema';
 import { genSalt, hash, compare } from 'bcryptjs';
 import { AuthService } from 'src/auth/auth.service';
@@ -50,4 +50,25 @@ export class UserService {
             throw new Error(error);
         }
     }
+
+    async updateUserData(id: string, updateUserDto: updateUserDto): Promise<string> {
+        try {
+            const user = await this.userModel.findById(id);
+            if (!user) {
+                throw new Error('User does not exist');
+            }
+            // delets field if empty 
+            const data = { ...updateUserDto }
+            for (const key in data) {
+                if (data[key] === '') {
+                    delete data[key];
+                }
+            }
+            await this.userModel.findByIdAndUpdate(id, updateUserDto, { new: true });
+            return `updated successfully complete `
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
 }
