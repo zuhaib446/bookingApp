@@ -9,10 +9,17 @@ import { Hotel } from './schema/hotel.schema';
 export class HotelService {
     constructor(@InjectModel(Hotel.name) private readonly hotelModel: Model<HotelInterface>) { }
 
-    async create(user: string, hotelDto: HotelDto): Promise<HotelInterface> {
+    async create(user: any, hotelDto: HotelDto): Promise<HotelInterface> {
         try {
-            const createdHotel = new this.hotelModel(hotelDto);
-            return await createdHotel.save();
+            if (user.role.include('owner')) {
+                const data = {
+                    ...hotelDto,
+                    user: user._id
+                }
+                const createdHotel = new this.hotelModel(data);
+
+                return await createdHotel.save();
+            }
         } catch (error) {
             throw new Error(error);
         }
@@ -36,6 +43,7 @@ export class HotelService {
 
     async update(id: string, hotelDto: HotelDto): Promise<HotelInterface> {
         try {
+
             return await this.hotelModel.findByIdAndUpdate(id, hotelDto, { new: true });
         } catch (error) {
             throw new Error(error);
