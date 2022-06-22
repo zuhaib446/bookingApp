@@ -9,7 +9,7 @@ import { Hotel } from './schema/hotel.schema';
 export class HotelService {
     constructor(@InjectModel(Hotel.name) private readonly hotelModel: Model<HotelInterface>) { }
 
-    async create(hotelDto: HotelDto): Promise<HotelInterface> {
+    async create(user: string, hotelDto: HotelDto): Promise<HotelInterface> {
         try {
             const createdHotel = new this.hotelModel(hotelDto);
             return await createdHotel.save();

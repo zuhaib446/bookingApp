@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, SchemaTimestampsConfig, Schema as MSchema } from 'mongoose';
 import { RoomInterface } from 'src/rooms/interface/room.interface';
+import { UserInterface } from 'src/user/interface/user.interface';
 import { HotelInterface } from '../interface/hotel.interface';
 
 export type HotelDocument = Document & SchemaTimestampsConfig;
@@ -34,6 +35,9 @@ export class Hotel implements HotelInterface {
 
     @Prop()
     image: string;
+
+    @Prop({ type: { type: MSchema.Types.ObjectId, ref: 'User' } })
+    user: UserInterface
 
     @Prop({ type: [{ type: MSchema.Types.ObjectId, ref: 'Room' }] })
     rooms: RoomInterface[];
