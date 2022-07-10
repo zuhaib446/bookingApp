@@ -21,6 +21,12 @@ export class User implements UserInterface {
     })
     role: string;
 
+    @Prop({
+        enum: ['hotelService', 'busService', 'carService', 'vanService', 'coasterService'],
+        default: 'none',
+    })
+    serviceProvider: string;
+
     @Prop()
     bankAccount: string;
 

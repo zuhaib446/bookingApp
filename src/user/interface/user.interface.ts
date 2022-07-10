@@ -5,6 +5,7 @@ export interface UserInterface {
     email: string;
     password: string;
     role: string;
+    serviceProvider: string;
     bankAccount: string;
     phone: string;
     address: string;
