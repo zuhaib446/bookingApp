@@ -9,6 +9,8 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { BookingModule } from './booking/booking.module';
 import { AdminModule } from './admin/admin.module';
+import { SeatBookingModule } from './seat-booking/seat-booking.module';
+import { ServicesModule } from './services/services.module';
 config();
 
 @Module({
@@ -20,6 +22,8 @@ config();
     AuthModule,
     BookingModule,
     AdminModule,
+    SeatBookingModule,
+    ServicesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
